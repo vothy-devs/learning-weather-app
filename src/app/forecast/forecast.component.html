@@ -1,0 +1,29 @@
+<div class="flex flex-col items-center p-8 rounded-md w-auto sm:px-12 dark:bg-gray-900 dark:text-gray-100"
+	*ngIf="weatherResponse">
+	<div class="text-center">
+		<h2 class="text-xl font-semibold">{{weatherResponse.name}}</h2>
+		<p class="text-sm dark:text-gray-400">{{ weatherResponse.dt * 1000 | date:'EEEE'}}</p>
+		<p class="text-sm dark:text-gray-400">{{ weatherResponse.dt * 1000 | date:'shortTime'}}</p>
+	</div>
+	<img alt="{{weatherResponse.weather[0].main}}"
+		src="http://openweathermap.org/img/wn/{{weatherResponse.weather[0].icon}}.png">
+	<div class="mb-2 text-3xl font-semibold">{{weatherResponse.main.temp.toFixed(0)}}°
+	</div>
+	<p class="dark:text-gray-400">{{weatherResponse.weather[0].description | titlecase}}</p>
+</div>
+<div *ngIf="recentSearches.length > 0" class="text-center recentSearch"> Previous Searches
+	<div class="flex flex-grow-0 v-screen items-center pl-1 m-1 rounded-md w-60 sm:px-12 dark:bg-gray-900 dark:text-gray-100"
+		*ngFor="let search of recentSearches">
+		<div class="text-center">
+			<img alt="{{search.weather[0].main}}" src="http://openweathermap.org/img/wn/{{search.weather[0].icon}}.png">
+			<div class="mb-2 text-sm font-semibold align-middle">{{search.main.temp.toFixed(0)}}°
+			</div>
+			</div>
+		<div class="text-center">
+			<h2 class="text-m font-semibold">{{search.name}}</h2>
+			<p class="text-xs dark:text-gray-400">{{ search.dt * 1000 | date:'EEEE'}}</p>
+			<p class="text-xs dark:text-gray-400">{{ search.dt * 1000 | date:'shortTime'}}</p>
+			<p class="dark:text-gray-400 text-sm align-middle" >{{search.weather[0].description | titlecase}}</p>
+		</div>
+	</div>
+</div>
