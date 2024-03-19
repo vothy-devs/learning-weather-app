@@ -16,21 +16,15 @@ export class ForecastComponent {
 
   ngOnChanges() {
     if(this.zipcode!==""){
-      console.log(`the zip being used: ${this.zipcode}.`);
-      this.getForecast();
-      this.getRecentSearches();
-      this.changeDetection.detectChanges();
+      this.forcastSrvc.getForecast(this.zipcode).subscribe(data => {
+        this.weatherResponse = data;
+        this.recentSearchSvcs.setLocalSearches(data);
+        this.changeDetection.detectChanges();
+        this.recentSearches = this.recentSearchSvcs.getLocalSearches();
+        this.recentSearches.shift();
+        this.changeDetection.detectChanges();
+      });
     }
   }
 
-  getForecast() {
-    this.forcastSrvc.getForecast(this.zipcode).subscribe(data => {
-      this.weatherResponse = data;
-      this.recentSearchSvcs.setLocalSearches(data)
-    });
-  }
-
-  getRecentSearches() {
-      this.recentSearches = this.recentSearchSvcs.getLocalSearches();
-  }
 }

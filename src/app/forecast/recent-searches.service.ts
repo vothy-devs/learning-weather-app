@@ -11,7 +11,6 @@ export class RecentSearchesService {
 
   getLocalSearches() {
     if (localStorage["recentSearches"]) {
-      console.log(JSON.parse(localStorage["recentSearches"]))
       return JSON.parse(localStorage["recentSearches"]);
     }
   }

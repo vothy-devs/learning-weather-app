@@ -1,5 +1,5 @@
 <div class="flex flex-col items-center p-8 rounded-md w-auto sm:px-12 dark:bg-gray-900 dark:text-gray-100"
-	*ngIf="weatherResponse">
+	*ngIf="weatherResponse !== undefined">
 	<div class="text-center">
 		<h2 class="text-xl font-semibold">{{weatherResponse.name}}</h2>
 		<p class="text-sm dark:text-gray-400">{{ weatherResponse.dt * 1000 | date:'EEEE'}}</p>
